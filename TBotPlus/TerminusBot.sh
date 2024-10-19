@@ -4,6 +4,9 @@
 #==========================================================================|
 
 [[ -f /etc/TerminusBot/link_download.sh ]] && source /etc/TerminusBot/link_download.sh
+[[ ! -d "/etc/TerminusBot/" ]] && mkdir -p '/etc/TerminusBot/'
+[[ ! -f "/etc/TerminusBot/info-bot" ]] && touch '/etc/TerminusBot/info-bot'
+
 
 #================ CODIGOS ESTILOS ============|
 Bold=$(tput bold)
@@ -258,7 +261,7 @@ echo -e "\n"
       00 )
         clear
         fechar
-        
+
           ;;
   esac
 }
@@ -311,16 +314,16 @@ segundo_menu(){
   then
     [[ -z $( cat /etc/TerminusBot/usuario_segundo_login ) ]] && acesso_segundo_vazio="" || acesso_segundo_vazio="ok"
   fi
-  
+
   tput cup 3 1
-  tput setab 7 
+  tput setab 7
   tput setaf 0
   echo "               Segundo botão                                  "
   tput sgr0
 
   tput cup 4 1
   echo "${Red}[${Norm}${Bold}1${Norm}${Red}]${Norm} ${Yellow}${Bold}Ativar/Desativar segunda conta${Norm}${Norm} [${Green}${extendido_vazio}${Norm}]"        
-  tput sgr0     
+  tput sgr0
   tput cup 5 1
   echo "${Bold}${Red}[${Norm}2${Red}]${Norm} ${Yellow}${Bold}Valor 2° conta${Norm}${Norm} [${Green}${segundo_valor_vazio}${Norm}]"       
   tput sgr0
@@ -367,7 +370,7 @@ configuracao(){
         segundo_menu
         break
       }
-      
+
     fi
     if [[ $escolha == "2" ]] 
     then
@@ -458,7 +461,7 @@ valor_segundo_login(){
   echo "${Cyan}Ex: 10.00${Norm}"
   read -p ":>" valor
 
-  if [[ -z $(echo $valor | egrep '[0-9]{2}.[0-9]' ) ]]
+  if [[ -z $(echo $valor | egrep '[0-9]{1,}.[0-9]' ) ]]
   then
       echo "${Red}[!]Digite um valor válido${Norm}"
       sleep 1
@@ -630,7 +633,7 @@ while :
   echo "${Cyan}Ex: 10.00${Norm}"
   read -p ":>" valor
 
-  if [[ -z $(echo $valor | egrep '[0-9]{2}.[0-9]' ) ]]
+  if [[ -z $(echo $valor | egrep '[0-9]{1,}.[0-9]' ) ]]
   then
       echo "${Red}[!]Digite um valor válido${Norm}"
       sleep 1
