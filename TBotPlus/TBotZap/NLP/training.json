@@ -1,0 +1,161 @@
+{
+    "name": "Training",
+    "locale": "pt-BR",
+    "data": [
+      {
+        "intent": "SAUDACAO.RECEPCAO",
+        "utterances": [
+            "alguém",
+            "alguem",
+            "alguem?",
+            "como funciona?",
+            "como funciona",
+            "Oi!",
+            "Olá!",
+            "Eai!",
+            "Opa!",
+            "Oi, boa tarde!",
+            "boa tarde",
+            "boa noite!",
+            "Olá, boa tarde",
+            "Olá, boa noite",
+            "Oi, boa noite",
+            "Oi, bom dia!",
+            "bom dia!",
+            "tudo bem?",
+            "com vai?",
+            "esta ai?",
+            "esta ai",
+            "bot",
+            "terminus",
+            "cade minha internet gratis",
+            "tem alguem ai?",
+            "tem alguem?",
+            "tem alguem",
+            "fala mano"
+        ],
+        "answers": [
+            "Oi, no que posso te ajudar?"
+        ]
+      },
+      {
+        "intent": "INTENCAO.TESTE",
+        "utterances":[
+          "cadê meu teste",
+          "terminus cade meu teste",
+          "passa mais um teste por favor",
+          "tem como fazer um teste",
+          "teste",
+          "!teste",
+          "!comprar",
+          "criar teste",
+          "criar teste grátis",
+          "quero testar",
+          "me dá uma conta teste",
+          "me dá uma conta",
+          "grátis",
+          "teste",
+          "Quero uma conta de graça",
+          "quero uma conta de graça",
+          "teste",
+          "1"
+        ],
+        "answers":[
+          "Você deseja receber um teste grátis? Responda com *sim*, para confirmar."
+        ]
+      },
+      {
+        "intent": "INTENCAO.IGNORAR",
+        "utterances":[
+          "to cagado de fome",
+          "mas a principio ele esta se saido bem",
+          "Tá ficando top",
+          "Coloca um amigo meu aqui no grupo",
+          "epois que cria o primeiro ele fica bugado",
+          "!teste",
+          "!comprar",
+          "Ele entendeu as variações  de palavras ",
+          "!TESTE",
+          "!COMPRAR",
+          "no privado ele não gera a conta",
+          "Tinha um código errado",
+          "!COMPRAR",
+          "Pra você ver você dorme com bot funcionando e acorda com ele todo cagado",
+          "Deem a opnião de vocês sobre frases para por",
+          "questão de design tambem",
+          "me manda o número dele",
+          "o primeiro ele vem normal",
+          "Em teoria está funcionando criação de teste e compra ssh",
+          "não seria um número pra falar com o dono do bot",
+          "Mas axo que estás opção  já são suficientes  o resto e frescura",
+          "eita cade o pix?",
+          "Isso é verdade",
+          "Oque não pode é não identificar   isto já tá fazendo e não tá liberado  o teste e oque importa",
+          "vou simular um pagamento pra ver"
+        ],
+        "answers":[
+          "Não identifiquei o seu pedido."
+        ]
+      },
+      {
+        "intent": "INTENCAO.COMPRAR",
+        "utterances":[
+          "comprar acesso",
+          "comprar conta",
+          "comprar vpn",
+          "comprar ssh",
+          "Quanto custa?",
+          "Quais são os valores?",
+          "Pode me falar o preço?",
+          "Quanto é o valor?",
+          "Quanto custa",
+          "Quais são os valores",
+          "Pode me falar o preço",
+          "Quan é o valor",
+          "comprar",
+          "adquirir",
+          "gostaria de comprar uma conta",
+          "quero comprar uma conta",
+          "quero comprar um login",
+          "comprar acesso",
+          "comprar login",
+          "desejo comprar",
+          "desejo adquirir",
+          "Adiquirir conta premium",
+          "obter conta paga",
+          "premium",
+          "Pagar",
+          "PAGAR",
+          "pagar",
+          "quero pagar",
+          "você vende contas ssh",
+          "você vende conta ssh",
+          "você vende contas para vpn",
+          "você vende conta para vpn",
+          "vc vende",
+          "2",
+          "boa noite  qual os valores pra revenda",
+          "valor revenda"
+        ],
+        "answers":[
+          "Não identifiquei o seu pedido."
+        ]
+      },
+      {
+        "intent": "INTENCAO.CONTAS",
+        "utterances":[
+          "Receber a minha conta",
+          "Não recebi a minha conta",
+          "Não recebia a conta",
+          "Onde está a minha conta",
+          "Já fiz o pagamento e não recebi a conta",
+          "Receber conta",
+          "Quero a minha conta",
+          "Já fiz o pagamento",
+          "Já fiz o pagamento quero a minha conta"
+        ],
+        "answers":[]
+      }
+
+    ]
+  }

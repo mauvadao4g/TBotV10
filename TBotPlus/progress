@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+while :
+do
+    for loading in "Oooo | Loading | oooO" "oOoo | Loading | ooOo" "ooOo | Loading | oOoo" "oooO | Loading | Oooo"; do
+        clear
+        echo -n "$loading"
+        sleep 2
+
+    done
+
+done
