@@ -4,7 +4,7 @@ criar_teste(){
   TOKEN=$(cat /etc/TerminusBot/info-bot)
   URL="https://api.telegram.org/bot$TOKEN/sendMessage"
 
-  lista=$(awk '{print}' /etc/TerminusBot/usuarios_bloc.db)
+  lista=$(awk -F\|n '{print}' /etc/TerminusBot/usuarios_bloc.db)
   n=0
 
   for id in $lista;do

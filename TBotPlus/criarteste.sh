@@ -18,7 +18,7 @@ if grep -Fxq "$nome" /tmp/users
 then
 	 	exit 1
 fi
-pass=$(echo $RANDOM  | head -c 5; echo;)
+pass=$(echo $RANDOM | 123456789 | head -c 5; echo;)
 if [[ -z $pass ]]
 then
 	exit 1
@@ -48,7 +48,7 @@ exit" > /etc/SSHPlus/userteste/$nome.sh
 chmod +x /etc/SSHPlus/userteste/$nome.sh
 at -f /etc/SSHPlus/userteste/$nome.sh now + $u_temp min > /dev/null 2>&1
 
-chat_id=${1:-2050411579}
+chat_id=$1
 [[ $tempo > 1 ]] && after="Horas" || after="Hora"
 [[ $limit > 1 ]] && user_limit="Usuários" || user_limit="Usuário"
 
