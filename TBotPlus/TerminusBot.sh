@@ -4,7 +4,10 @@
 #==========================================================================|
 
 [[ -f /etc/TerminusBot/link_download.sh ]] && source /etc/TerminusBot/link_download.sh
-[[ ! -d /etc/TerminusBot/ ]] && mkdir -p '/etc/TerminusBot/'
+[[ ! -d "/etc/TerminusBot/" ]] && mkdir -p '/etc/TerminusBot/'
+[[ ! -f "/etc/TerminusBot/info-bot" ]] && touch '/etc/TerminusBot/info-bot'
+
+
 #================ CODIGOS ESTILOS ============|
 Bold=$(tput bold)
 Norm=$(tput sgr0)
@@ -13,11 +16,8 @@ Red=$(tput setaf 1)
 Green=$(tput setaf 2)
 #=============== CONSTANTES =============#
 file=/etc/TermiusBot
-[ ! -d "$file" ] && { mkdir "$file"; } # se não existir a pasta /etc/TermiusBot cria a nova pasta
 file_mp="$file/info-mp"
-[ ! -f "$file_mp" ] && { touch "$file_mp"; } # se não existir o file info-mp ele cria um arquivo.
 file_bot="$file/etc/TerminusBot/info-bot"
-[ ! -f "$file_bot" ] && { touch "$file_bot"; }
 file_revenda="$file/revenda-link"
 file_valor_login="$file/valor-login"
 file_temp_teste="$file/tempo-test"
@@ -200,7 +200,7 @@ echo -e "\n"
 	    3 )
       clear
       pararBot_telegram
-
+		  
 		      ;;
       4 )
       clear
@@ -209,21 +209,22 @@ echo -e "\n"
       5 )
         clear
         pedir_token_bot
+        
           ;;
       6 )
         clear
         pedir_token_mp
-
+        
           ;;
-      7 )
+      7 ) 
         clear
         link_revenda
           ;;
-      8 )
+      8 ) 
         clear
         link_suporte
           ;;
-      9 )
+      9 ) 
         clear
         menu_app_download
         exit 1
@@ -260,6 +261,7 @@ echo -e "\n"
       00 )
         clear
         fechar
+
           ;;
   esac
 }
@@ -333,7 +335,7 @@ segundo_menu(){
   tput sgr0
 
   tput cup 8 1
-  echo "${Bold}${Red}[${Norm}5${Red}]${Norm} ${Yellow}${Bold}Voltar${Norm}${Norm}"
+  echo "${Bold}${Red}[${Norm}5${Red}]${Norm} ${Yellow}${Bold}Voltar${Norm}${Norm}"       
   tput sgr0
   configuracao
 }
@@ -349,7 +351,7 @@ configuracao(){
  do
     echo -e "\n"
     read -p "Escolha:> " escolha
-    if [[ $escolha == "1" ]]
+    if [[ $escolha == "1" ]] 
     then
 
       [[  $(cat /etc/TerminusBot/menu_extendido) == "ativo" ]] && {
@@ -370,15 +372,15 @@ configuracao(){
       }
 
     fi
-    if [[ $escolha == "2" ]]
+    if [[ $escolha == "2" ]] 
     then
-      valor_segundo_login
-      break
+      valor_segundo_login 
+      break 
     fi
     if [[ $escolha == "3" ]]
     then
-      tempo_segundo_login
-      break
+      tempo_segundo_login 
+      break 
     fi
     if [[ $escolha == "4" ]]
     then
@@ -459,7 +461,7 @@ valor_segundo_login(){
   echo "${Cyan}Ex: 10.00${Norm}"
   read -p ":>" valor
 
-  if [[ -z $(echo $valor | egrep '[0-9]{2}.[0-9]' ) ]]
+  if [[ -z $(echo $valor | egrep '[0-9]{1,}.[0-9]' ) ]]
   then
       echo "${Red}[!]Digite um valor válido${Norm}"
       sleep 1
@@ -485,7 +487,7 @@ tempo_segundo_login(){
     echo "Digite a validade da conta"
     echo "Ex: 30 = 1 Mês | 60 = 2 Mêses"
     read -p ":> " escolha
-   if [[ -n $( echo $escolha | egrep '[0-9]{2,}') ]]
+   if [[ -n $( echo $escolha | egrep '[0-9]{2,}') ]] 
    then
       echo $escolha > /etc/TerminusBot/tempo_segundo_valor
       clear
@@ -500,7 +502,7 @@ tempo_segundo_login(){
       sleep 2
       clear
     fi
-
+   
 
   done
 
@@ -513,7 +515,7 @@ usuario_segundo_login(){
     echo "${Yello}${Bold}Digite o numero de acesso  a  conta${Norm}${Norm}"
     echo "${Magenta}Ex: 1 = 1 Acesso | 2 = 2 Acesso${Norm}"
     read -p ":> " escolha
-   if [[ -n $( echo $escolha | egrep '[0-9]{1,}') ]]
+   if [[ -n $( echo $escolha | egrep '[0-9]{1,}') ]] 
    then
       echo $escolha > /etc/TerminusBot/usuario_segundo_login
       clear
@@ -528,7 +530,7 @@ usuario_segundo_login(){
       sleep 2
       clear
     fi
-
+   
 
   done
 
@@ -561,7 +563,7 @@ while :
             break
          }
       done
-
+      
 }
 
 numero_acesso(){
@@ -708,7 +710,7 @@ ativar_bot_WhatsApp(){
 }
 
 ativar_bot_telegram(){
-  screen -dmS terminus
+  screen -dmS terminus 
   screen -S terminus -p 0 -X stuff  '/etc/TerminusBot/./TBot.sh\n'
   sleep 2
   screen -dmS check-pg
@@ -767,7 +769,6 @@ pedir_token_bot(){
       clear
    else
       clear
-      [ ! -f "/etc/TerminusBot/info-bot" ] && { touch '/etc/TerminusBot/info-bot'; }
       echo $token > /etc/TerminusBot/info-bot
       if [[ $? == "0" ]]
       then
