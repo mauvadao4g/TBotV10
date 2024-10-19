@@ -16,6 +16,11 @@ then
     exit
 fi
 
+# Entrar na pasta principal pra copiar os arquivos
+[[ ! -d TBotPlus ]] && { echo '\e[1;31mPasta não existe: TBotPlus\e[0m'; exit 1; } || cd TBotPlus
+
+
+
 alocar_bot(){
 
     mv TerminusBot.sh terminus
@@ -26,7 +31,8 @@ alocar_bot(){
 
 }
 
-bash TBotPlus/progress&
+# bash TBotPlus/progress&
+bash progress&
 PID=$!
 alocar_bot
 cp -rf ./* /etc/TerminusBot/

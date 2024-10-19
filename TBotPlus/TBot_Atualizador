@@ -26,8 +26,8 @@ alocar_bot(){
 bash progress&
 PID=$!
 alocar_bot
-cp -rf ./* /etc/TerminusBot/ 
-rm -r TBotPlus
+cp -rf ./* /etc/TerminusBot/
+# rm -r TBotPlus
 sleep 5
 clear
 $(kill $PID)

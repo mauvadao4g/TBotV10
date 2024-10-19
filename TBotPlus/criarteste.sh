@@ -18,7 +18,7 @@ if grep -Fxq "$nome" /tmp/users
 then
 	 	exit 1
 fi
-pass=$(echo $RANDOM | 123456789 | head -c 5; echo;)
+pass=$(echo $RANDOM |  head -c 5; echo;)
 if [[ -z $pass ]]
 then
 	exit 1
