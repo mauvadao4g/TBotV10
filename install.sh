@@ -43,11 +43,10 @@ baixarBOT(){
 alocar_bot(){
 # Entrar na pasta principal pra copiar os arquivos
 [[ ! -d TBotPlus ]] && { echo '\e[1;31mPasta não existe: TBotPlus\e[0m'; exit 1; } || cd TBotPlus
-    cd TBotPlus
-    mv TerminusBot.sh terminus
+    cp TerminusBot.sh terminus
     chmod +x terminus
     cp terminus /bin
-    mv terminus TerminusBot.sh
+#   mv terminus TerminusBot.sh
     chmod +x TerminusBot.sh
 
 }
@@ -60,6 +59,7 @@ alocar_bot(){
 # Baixar e executar o bot
 baixarBOT
 alocar_bot
+cp -rf ./* /etc/TerminusBot/
 # Finalizar barra de progresso
 # kill -9 $PID2
 # wait $PID2
