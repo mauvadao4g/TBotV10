@@ -3,7 +3,7 @@
 #
 #==========================================================================|
 
-[[ -f /etc/TerminusBot/link_download.sh ]] && source /etc/TerminusBot/link_download.sh
+[[ -f "/etc/TerminusBot/link_download.sh" ]] && source "/etc/TerminusBot/link_download.sh"
 [[ ! -d "/etc/TerminusBot/" ]] && mkdir -p '/etc/TerminusBot/'
 [[ ! -f "/etc/TerminusBot/info-bot" ]] && touch '/etc/TerminusBot/info-bot'
 
@@ -41,20 +41,20 @@ clear
 tput cup 3 1
 tput setab 7 
 tput setaf 0
-echo "                            CIBORGUE BOT  V1.0                               "
+echo "                            MAUDAVPN BOT V10                               "
 tput sgr0
 echo " "
 tput cup 4 1
 echo "${Red}[${Norm}${Bold}1${Norm}${Red}]${Norm} ${Yellow}${Bold}Ativar Bot Telegram${Norm}${Norm}[${Green}${terminus_vazio}${Norm}]"        
-tput sgr0     
+tput sgr0
 tput cup 5 1
 echo "${Red}[${Norm}${Bold}2${Norm}${Red}]${Norm} ${Yellow}${Bold}Ativar Bot WhatsApp${Norm}${Norm}[${Green}${twabot_vazio}${Norm}]"        
-tput sgr0     
+tput sgr0
 tput cup 6 1
-echo "${Red}[${Norm}${Bold}3${Norm}${Red}]${Norm} ${Yellow}${Bold}Parar Telegram${Norm}${Norm}"       
+echo "${Red}[${Norm}${Bold}3${Norm}${Red}]${Norm} ${Yellow}${Bold}Parar Telegram${Norm}${Norm}"
 tput sgr0
 tput cup 7 1
-echo "${Red}[${Norm}${Bold}4${Norm}${Red}]${Norm} ${Yellow}${Bold}Parar WhatsApp${Norm}${Norm}"       
+echo "${Red}[${Norm}${Bold}4${Norm}${Red}]${Norm} ${Yellow}${Bold}Parar WhatsApp${Norm}${Norm}"
 tput sgr0
 tput cup 8 1
 echo "${Red}[${Norm}${Bold}5${Norm}${Red}]${Norm} ${Yellow}${Bold}Token bot${Norm}${Norm} [${Green}${bot_vazio}${Norm}]"
