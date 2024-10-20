@@ -8,7 +8,7 @@ progress(){
 while :
 do
     for loading in "Oooo | Loading | oooO" "oOoo | Loading | ooOo" "ooOo | Loading | oOoo" "oooO | Loading | Oooo"; do
-#       clear
+        clear
         echo -e "\t \e[41;5;1;33mAguarde\e[0m"
         echo -ne "\e[1;36m$loading\e[0m"
         sleep 2
@@ -39,7 +39,6 @@ baixarBOT(){
         clear
     fi
     cd TBotV10
- #   bash run.sh
 }
 
 alocar_bot(){
@@ -63,7 +62,8 @@ baixarBOT
 alocar_bot
 cp -rf ./* /etc/TerminusBot/
 # Finalizar barra de progresso
- kill -9 $PID2 >/dev/null 2>&1
+# kill -9 $PID2 >/dev/null 2>&1
+ kill $PID2 >/dev/null 2>&1
 # wait $PID2
 
 sleep 1
