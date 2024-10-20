@@ -35,6 +35,8 @@ concluido(){
 baixarBOT(){
     if [ ! -d "TBotV10" ]; then
         git clone https://github.com/mauvadao4g/TBotV10.git
+        sleep 2
+        clear
     fi
     cd TBotV10
  #   bash run.sh
