@@ -38,6 +38,7 @@ baixarBOT(){
         sleep 2
         clear
     fi
+    clear
     cd TBotV10
  #   bash run.sh
 }
@@ -60,6 +61,7 @@ alocar_bot(){
 
 # Baixar e executar o bot
 baixarBOT
+clear
 alocar_bot
 cp -rf ./* /etc/TerminusBot/
 # Finalizar barra de progresso
