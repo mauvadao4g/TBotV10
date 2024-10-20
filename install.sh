@@ -40,16 +40,29 @@ baixarBOT(){
     bash run.sh
 }
 
+alocar_bot(){
+# Entrar na pasta principal pra copiar os arquivos
+[[ ! -d TBotPlus ]] && { echo '\e[1;31mPasta não existe: TBotPlus\e[0m'; exit 1; } || cd TBotPlus
+
+    mv TerminusBot.sh terminus
+    chmod +x terminus
+    cp terminus /bin
+    mv terminus TerminusBot.sh
+    chmod +x TerminusBot.sh
+
+}
+
+
 # Iniciar barra de progresso em segundo plano
-# progress&
-# PID2=$!
+ progress&
+ PID2=$!
 
 # Baixar e executar o bot
 baixarBOT
-
+alocar_bot
 # Finalizar barra de progresso
-# kill -9 $PID2
-# wait $PID2
+ kill -9 $PID2
+ wait $PID2
 
 sleep 1
 concluido
