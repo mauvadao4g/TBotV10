@@ -41,7 +41,7 @@ clear
 $(kill $PID)
 clear
 echo "[-] Para iniciar o menu na proxima vez digite: ${Yellow}\"terminus\"${Norm}"
-sleep 5
+sleep 2
 
 terminus
 
