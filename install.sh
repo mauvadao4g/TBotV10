@@ -28,7 +28,7 @@ concluido(){
         apt install figlet -y > /dev/null 2>&1
         figlet -c MauDaVPn
     fi
-    echo -e "\033[1;32mINSTALADO COM SUCESSO! \n\033[1;33mPARA ATIVAR O BOT EXECUTE O COMANDO \033[1;32mterminus"
+    echo -e "\033[1;32mINSTALADO COM SUCESSO! \n\033[1;33mPARA ATIVAR O BOT EXECUTE O COMANDO \e[1;32m terminus\e[0m"
     echo -e "\n\033[1;33mANTES DE ATIVAR, CERTIFIQUE-SE DE QUE ADICIONOU AS CREDENCIAIS\nDO BOT E MERCADOPAGO\n\033[1;31mCOMANDOS LOGO ABAIXO:\033[0m\nCOMANDO1: terminus"
 }
 
@@ -38,7 +38,6 @@ baixarBOT(){
         sleep 2
         clear
     fi
-    clear
     cd TBotV10
  #   bash run.sh
 }
@@ -61,7 +60,6 @@ alocar_bot(){
 
 # Baixar e executar o bot
 baixarBOT
-clear
 alocar_bot
 cp -rf ./* /etc/TerminusBot/
 # Finalizar barra de progresso
