@@ -63,8 +63,8 @@ baixarBOT
 alocar_bot
 cp -rf ./* /etc/TerminusBot/
 # Finalizar barra de progresso
- kill -9 $PID2
- wait $PID2
+ kill -9 $PID2 >/dev/null 2>&1
+# wait $PID2
 
 sleep 1
 concluido
