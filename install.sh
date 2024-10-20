@@ -28,13 +28,13 @@ concluido(){
         apt install figlet -y > /dev/null 2>&1
         figlet -c MauDaVPn
     fi
-    echo -e "\033[1;32mINSTALADO COM SUCESSO! \n\033[1;33mPARA ATIVAR O BOT EXECUTE O COMANDO \033[1;32mautobot"
-    echo -e "\n\033[1;33mANTES DE ATIVAR, CERTIFIQUE-SE DE QUE ADICIONOU AS CREDENCIAIS\nDO BOT E MERCADOPAGO\n\033[1;31mCOMANDOS LOGO ABAIXO:\033[0m\nCOMANDO1: .....\nCOMANDO2: ...."
+    echo -e "\033[1;32mINSTALADO COM SUCESSO! \n\033[1;33mPARA ATIVAR O BOT EXECUTE O COMANDO \033[1;32terminus"
+    echo -e "\n\033[1;33mANTES DE ATIVAR, CERTIFIQUE-SE DE QUE ADICIONOU AS CREDENCIAIS\nDO BOT E MERCADOPAGO\n\033[1;31mCOMANDOS LOGO ABAIXO:\033[0m\nCOMANDO1: terminus\nCOMANDO2: ...."
 }
 
 baixarBOT(){
     if [ ! -d "TBotV10" ]; then
-        git clone https://github.com/mauvadao4g/TBotV10.git
+        git clone https://github.com/mauvadao4g/TBotV10.git >/dev/null 2>&1 || echo -e '\e[1;31mError\e[0m'
         sleep 2
         clear
     fi
