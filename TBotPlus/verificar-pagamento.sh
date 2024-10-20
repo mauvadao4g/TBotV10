@@ -2,7 +2,7 @@
 #pagamentoId=$1
 
 # Recebe o paymentId do pagamento.db verifica todos os paymentId com o status
-# pending e acessa a 
+# pending e acessa a
 
 #if [[ $UID -ne 0 ]]; then
 #	echo Execute $0 como root
@@ -12,12 +12,12 @@
 #=============== CONSTANTES =============#
 mp_token=$(cat /etc/TerminusBot/info-mp)
 #========================================|
-verifica_pagamento(){  
+verifica_pagamento(){
 
 local resultado=$(
   curl -s -X GET \
     'https://api.mercadopago.com/v1/payments/'$1 \
-    -H 'Authorization: Bearer '$mp_token 
+    -H 'Authorization: Bearer '$mp_token
 )
 
  echo $resultado
@@ -36,17 +36,16 @@ then
     chatId=$(echo $linha | cut -d"|" -f 4)
     limit=$(echo $linha | cut -d"|" -f 5)
     expire=$(echo $linha | cut -d"|" -f 6)
-    
-   
+
 
     if [[ $status != "approved" ]]
     then
-    
+
       pagamento_status=$(verifica_pagamento $payment)
       current_status=$(echo $pagamento_status | jq -r '.status')
       if [[ $current_status == "approved" ]]
       then
-        
+
         current_status=$(echo $pagamento_status | jq -r '.status')
 	      valor=$(echo $pagamento_status | jq -r '.transaction_amount')
 	      sed -i 's/'$linha'/'$payment'|approved|'$valor'|'$chatId'|'$expire'|'$limit'/g' .pedidos.db

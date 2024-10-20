@@ -2,6 +2,7 @@
 # MAUVADAO
 # VER: 1.0.0
 
+# MP=$(cat /etc/TerminusBot/info-mp)
 source /root/tokens.sh
 pagamento() {
     local valor="$1"
