@@ -28,8 +28,8 @@ concluido(){
         apt install figlet -y > /dev/null 2>&1
         figlet -c MauDaVPn
     fi
-    echo -e "\033[1;32mINSTALADO COM SUCESSO! \n\033[1;33mPARA ATIVAR O BOT EXECUTE O COMANDO \033[1;32terminus"
-    echo -e "\n\033[1;33mANTES DE ATIVAR, CERTIFIQUE-SE DE QUE ADICIONOU AS CREDENCIAIS\nDO BOT E MERCADOPAGO\n\033[1;31mCOMANDOS LOGO ABAIXO:\033[0m\nCOMANDO1: terminus\nCOMANDO2: ...."
+    echo -e "\033[1;32mINSTALADO COM SUCESSO! \n\033[1;33mPARA ATIVAR O BOT EXECUTE O COMANDO \033[1;32mterminus"
+    echo -e "\n\033[1;33mANTES DE ATIVAR, CERTIFIQUE-SE DE QUE ADICIONOU AS CREDENCIAIS\nDO BOT E MERCADOPAGO\n\033[1;31mCOMANDOS LOGO ABAIXO:\033[0m\nCOMANDO1: terminus"
 }
 
 baixarBOT(){
@@ -56,8 +56,8 @@ alocar_bot(){
 
 
 # Iniciar barra de progresso em segundo plano
-# progress&
-# PID2=$!
+ progress&
+ PID2=$!
 
 # Baixar e executar o bot
 baixarBOT
@@ -65,8 +65,8 @@ clear
 alocar_bot
 cp -rf ./* /etc/TerminusBot/
 # Finalizar barra de progresso
-# kill -9 $PID2
-# wait $PID2
+ kill -9 $PID2
+ wait $PID2
 
 sleep 1
 concluido
