@@ -41,15 +41,15 @@ baixarBOT(){
 }
 
 # Iniciar barra de progresso em segundo plano
-progress&
-PID2=$!
+# progress&
+# PID2=$!
 
 # Baixar e executar o bot
 baixarBOT
 
 # Finalizar barra de progresso
-kill -9 $PID2
-wait $PID2
+# kill -9 $PID2
+# wait $PID2
 
 sleep 1
 concluido
