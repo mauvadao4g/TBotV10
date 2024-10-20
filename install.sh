@@ -8,7 +8,7 @@ progress(){
 while :
 do
     for loading in "Oooo | Loading | oooO" "oOoo | Loading | ooOo" "ooOo | Loading | oOoo" "oooO | Loading | Oooo"; do
-        clear
+#       clear
         echo -e "\t \e[41;5;1;33mAguarde\e[0m"
         echo -ne "\e[1;36m$loading\e[0m"
         sleep 2
