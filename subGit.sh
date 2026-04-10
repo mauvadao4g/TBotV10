@@ -1,122 +1,141 @@
 #!/bin/bash
 # MAUVADAO
-# Versão: 1.0.3
+# Versão: 1.0.7
 # Script para adicionar, commitar e enviar alterações ao Git
+# Adicinado verificação denpasta Git
 
 
-# Função Bash para Verificar Conexão SSH com o GitHub:
-#!/bin/bash
-
-function verificar_ssh_github() {
+clear
+# Função para verificar conexão SSH com o GitHub
+verificar_ssh_github() {
     echo "Verificando conexão SSH com o GitHub..."
     if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
         echo -e "\033[32mConexão SSH com o GitHub está funcionando corretamente!\033[0m"
     else
         echo -e "\033[31mFalha na conexão SSH com o GitHub. Verifique sua chave SSH e tente novamente.\033[0m"
-    exit 1
+        exit 1
     fi
 }
 
 
+
+# Verifica se é um repositorio Git
+_verificar_git(){
+        # Detecta branch
+        BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+        if [ -z "$BRANCH" ]; then
+            echo -e  "\e[1;31m[!] Não conseguiu detectar branch.\e[0m"
+            exit 0
+        else
+            echo -e "\e[1;34m[*] Branch: $BRANCH\e[0m"
+        fi
+
+}
+
+# Verifica se é um repositorio git.
+_verificar_git
+
+# Verifica a conexão SSH antes de continuar
+verificar_ssh_github
+
+
+
+
+# Função para criar nova versão
 _new() {
     local commit="$1"
-    data=$(date '+%Y-%m-%d %H:%M:%S')
-    # Obtém o último arquivo correspondente ao padrão "ver[0-9]*"
-    file=$(ls ver[0-9]* 2>/dev/null | sort -V | tail -n 1)
+    local data=$(date '+%Y-%m-%d %H:%M:%S')
+    local file=$(ls ver[0-9]* 2>/dev/null | sort -V | tail -n 1)
+    local num
 
-    # Se não houver nenhum arquivo correspondente, inicia do zero
     if [[ -z "$file" ]]; then
         num=1
     else
-        # Extrai o número da versão do arquivo existente
         num=$(echo "$file" | grep -Eo '[0-9]+')
-        # Incrementa o número
         ((num++))
-        # Remove o arquivo anterior
-        rm "$file"
+		export	version=$num
+        rm -f "$file"
     fi
 
-    # Cria o novo nome do arquivo
-    newFile="ver$num"
-
-    # Cria o novo arquivo
-    touch "$newFile"
-    # adicionando linha de texto ao novo file
-
-    echo "==========================" >> $newFile
-    echo "$(basename $(pwd))" >> $newFile   
-#    echo "$(basename $(pwd))"
-    echo "Ver: $num" >> $newFile
-    echo "Data: $data" >> $newFile
-        echo "Update: ${commit:-New Update}" >> $newFile
-    echo "==========================" >> $newFile
+    local newFile="ver$num"
+    {
+        echo "=========================="
+        echo "$(basename "$(pwd)")"
+        echo "Ver: $num"
+        echo "Data: $data"
+        echo "Update: ${commit:-New Update}"
+        echo "=========================="
+    } > "$newFile"
 
     echo "Nova versão atualizada: $newFile"
 }
 
-# Chama a função
+# Chama a função para criar nova versão
 commit="$1"
 _new "$commit"
 
-
-
 # Função para exibir mensagens coloridas
 msg() {
-    local color=$1
-    local text=$2
+    local color="$1"
+    local text="$2"
     case "$color" in
-        green) tput setaf 2 ;;
-        yellow) tput setaf 3 ;;
-        red) tput setaf 1 ;;
-        *) tput sgr0 ;;
+        green) tput setaf 2 2>/dev/null ;;
+        yellow) tput setaf 3 2>/dev/null ;;
+        red) tput setaf 1 2>/dev/null ;;
+        *) tput sgr0 2>/dev/null ;;
     esac
     echo "$text"
-    tput sgr0
+    tput sgr0 2>/dev/null
 }
 
-# Verificação do Git
+# Verifica se o Git está instalado
 if ! command -v git &>/dev/null; then
     msg red "Erro: Git não está instalado. Por favor, instale-o antes de usar este script."
     exit 1
 fi
 
-# Mensagens de início
+# Mensagem inicial
 msg yellow "Iniciando o script de automação Git..."
 
+# Obtém o conteúdo da última versão criada
+texto=$(cat ver[0-9]* 2>/dev/null)
 
-texto=$(cat ver[0-9]* )
-# Adicionando alterações
+# Adiciona alterações ao Git
 msg green "Adicionando arquivos ao repositório..."
 git add -A || { msg red "Erro ao adicionar arquivos."; exit 1; }
 
-# Verificando status
-msg green "Verificando o status do repositório..."
-git status || { msg red "Erro ao verificar o status."; exit 1; }
+# Verifica se a algum commit
+git diff --cached --quiet && { echo -e "\e[1;31mNada para commitar\e[0m"; exit 0; }
 
-# Commit com timestamp
-msg green "Realizando commit com a mensagem: '$commit_msg'"
-# commit_msg="Update: $(date +%d%m%y_%H:%M)"
-commit_msg="$(date  +%d%m%y_%H:%M ;echo;$1;  echo -e "\n$texto\n")"
-git commit -m "$commit_msg" || { msg red "Erro ao realizar commit."; exit 1; }
 
-# Enviando alterações
+# Exibe o status do repositório
+# msg green "Verificando o status do repositório..."
+# git status || { msg red "Erro ao verificar o status."; exit 1; }
+
+# Realiza commit com mensagem personalizada
+commit_msg="$(date +%d%m%y_%H:%M)\n$commit\n\n$texto"
+# msg green "Realizando commit com a mensagem:"
+# echo -e "$commit_msg"
+git commit -m "$commit_msg" >/dev/null 2>&1 || { msg red "Erro ao realizar commit."; exit 1; }
+
+# Envia alterações para o repositório remoto
 msg green "Enviando alterações para o repositório remoto..."
 DIR="$(pwd)"
-git config --global --add safe.directory "$DIR" && git push || { msg red "Erro ao enviar alterações."; exit 1; }
+git config --global --add safe.directory "$DIR" >/dev/null 2>&1
+git push >/dev/null 2>&1 || { msg red "Erro ao enviar alterações."; exit 1; }
 
 # Mensagem de sucesso
-sleep 1
-    msg green "Processo concluído com sucesso!"
+# msg green "Processo concluído com sucesso!"
+echo -ne "\e[38;5;122mProcesso concluido com sucesso!\e[0m "
+echo -ne "\e[38;5;188mCommit:\e[0m "
+ COMMIT="$(git log --oneline | head -n1)"
+echo "$COMMIT"
+echo -ne '\e[1;30m'
+# cat ver[0-9]* 2>/dev/null
+echo -ne '\e[0m'
 
-    echo -ne "\e[1;33mCommit:\e[0m "
-    COMMIT="$(git log --oneline | head -n1)"
-    echo "$COMMIT"
-    echo -ne '\e[1;30m'
-    cat ver[0-9]*
-    echo -ne '\e[0m'    
-#    echo "Commit: $COMMIT" >> "$newFile" 
-
-
-
+# Verifica se a versão foi criada corretamente
+[[ $(ls | grep ver*) == "ver${version}" ]] && { echo  -e "\e[1;41;33mAtualizado\e[0m: \e[1;48;37m$version\e[0m"; } || { msg red "Erro: A versão não foi criada corretamente.";  }
 
 
