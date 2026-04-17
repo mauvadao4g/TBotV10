@@ -6,6 +6,14 @@
 
 
 clear
+
+# Verifica se ha modificacoes.
+[ -z "$(git status --porcelain)" ] && { echo "limpo"; exit 0; } || echo -e "\e[1;33mAlteracoes encontradas: \e[1;36m$(basename $(pwd))\e[0m"
+# ou
+# git diff --quiet && git diff --cached --quiet && { echo "limpo"; exit 0; } || echo "modificado"
+
+
+
 # Função para verificar conexão SSH com o GitHub
 verificar_ssh_github() {
     echo "Verificando conexão SSH com o GitHub..."
